@@ -142,7 +142,7 @@ function loadLevel() {
   show(null); state = "play"; skipIndent(); render(); focusInput();
   clearInterval(timer); timer = setInterval(tick, 100);
 }
-function skipIndent() { while (code[pos] === " " && code[pos - 1] === "\n") pos++; }
+function skipIndent() { if (code[pos - 1] === "\n") while (code[pos] === " ") pos++; }
 function tick() {
   if (state !== "play") return;
   tLeft -= .1; $("fill").style.width = Math.max(0, tLeft / total0 * 100) + "%";
